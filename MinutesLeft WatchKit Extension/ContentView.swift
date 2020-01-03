@@ -9,9 +9,63 @@
 import SwiftUI
 
 struct ContentView: View {
+    var managedObjectContext = (WKExtension.shared().delegate as! ExtensionDelegate).persistentContainer.viewContext
+    
     var body: some View {
-        Text("Hello, World!")
+        TimeList().environment(\.managedObjectContext, managedObjectContext)
     }
+}
+
+extension Formatter {
+    static let withoutSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = false
+        return formatter
+    }()
+}
+
+extension Numeric {
+    var formattedWithoutSeparator: String {
+        return Formatter.withoutSeparator.string(for: self) ?? ""
+    }
+}
+
+struct TimeList: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Time.entity(), sortDescriptors: [NSSortDescriptor(key: "startTime", ascending: true)]) var timeList: FetchedResults<Time>
+    var confirmDelete = false
+    
+    var body: some View {
+        ScrollView {
+            ForEach(timeList, id: \.self) { time in
+                Text("\(time.name), \(time.startTime.formattedWithoutSeparator), \(time.daysOfWeek.formattedWithoutSeparator)")
+            }
+            Button(action: {
+                var time = Time(context: self.managedObjectContext)
+                time.name = "A longer name"
+                time.startTime = 1200
+                time.daysOfWeek = 1111111
+                do {
+                    try self.managedObjectContext.save()
+                } catch {
+                    print(error)
+                }
+            }) {
+                Text("Add Time")
+            }
+            .foregroundColor(Color.blue)
+            Button(action: {
+                for time in self.timeList {
+                    self.managedObjectContext.delete(time)
+                }
+            }){
+                Text("Remove All Times")
+            }
+            .foregroundColor(Color.red)
+        }
+    }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -19,3 +73,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+

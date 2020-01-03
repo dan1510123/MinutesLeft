@@ -16,6 +16,8 @@
 		09D0111523BF3CA800AA9BB9 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0111423BF3CA800AA9BB9 /* ExtensionDelegate.swift */; };
 		09D0111723BF3CAB00AA9BB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */; };
 		09D0111A23BF3CAB00AA9BB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0111923BF3CAB00AA9BB9 /* Preview Assets.xcassets */; };
+		09D0112E23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */; };
+		09D0113023BF3FCA00AA9BB9 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0112F23BF3FCA00AA9BB9 /* Time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D0111923BF3CAB00AA9BB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		09D0111B23BF3CAB00AA9BB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D0112D23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImportantTimesData.xcdatamodel; sourceTree = "<group>"; };
+		09D0112F23BF3FCA00AA9BB9 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +125,11 @@
 				09D0111023BF3CA800AA9BB9 /* ContentView.swift */,
 				09D0111223BF3CA800AA9BB9 /* HostingController.swift */,
 				09D0111423BF3CA800AA9BB9 /* ExtensionDelegate.swift */,
+				09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */,
 				09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */,
 				09D0111B23BF3CAB00AA9BB9 /* Info.plist */,
 				09D0111823BF3CAB00AA9BB9 /* Preview Content */,
+				09D0112F23BF3FCA00AA9BB9 /* Time.swift */,
 			);
 			path = "MinutesLeft WatchKit Extension";
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09D0111323BF3CA800AA9BB9 /* HostingController.swift in Sources */,
+				09D0112E23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld in Sources */,
+				09D0113023BF3FCA00AA9BB9 /* Time.swift in Sources */,
 				09D0111123BF3CA800AA9BB9 /* ContentView.swift in Sources */,
 				09D0111523BF3CA800AA9BB9 /* ExtensionDelegate.swift in Sources */,
 			);
@@ -561,6 +569,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				09D0112D23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodel */,
+			);
+			currentVersion = 09D0112D23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodel */;
+			path = ImportantTimesData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 09D010F223BF3CA600AA9BB9 /* Project object */;
 }
