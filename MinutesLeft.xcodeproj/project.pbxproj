@@ -18,6 +18,7 @@
 		09D0111A23BF3CAB00AA9BB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0111923BF3CAB00AA9BB9 /* Preview Assets.xcassets */; };
 		09D0112E23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */; };
 		09D0113023BF3FCA00AA9BB9 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0112F23BF3FCA00AA9BB9 /* Time.swift */; };
+		09D0113223BF561F00AA9BB9 /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0113123BF561F00AA9BB9 /* ConfigurationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		09D0111B23BF3CAB00AA9BB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D0112D23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImportantTimesData.xcdatamodel; sourceTree = "<group>"; };
 		09D0112F23BF3FCA00AA9BB9 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		09D0113123BF561F00AA9BB9 /* ConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			children = (
 				09D0111023BF3CA800AA9BB9 /* ContentView.swift */,
 				09D0111223BF3CA800AA9BB9 /* HostingController.swift */,
+				09D0113123BF561F00AA9BB9 /* ConfigurationController.swift */,
 				09D0111423BF3CA800AA9BB9 /* ExtensionDelegate.swift */,
 				09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */,
 				09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D0113223BF561F00AA9BB9 /* ConfigurationController.swift in Sources */,
 				09D0111323BF3CA800AA9BB9 /* HostingController.swift in Sources */,
 				09D0112E23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld in Sources */,
 				09D0113023BF3FCA00AA9BB9 /* Time.swift in Sources */,

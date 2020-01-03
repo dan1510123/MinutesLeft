@@ -12,7 +12,15 @@ struct ContentView: View {
     var managedObjectContext = (WKExtension.shared().delegate as! ExtensionDelegate).persistentContainer.viewContext
     
     var body: some View {
-        TimeList().environment(\.managedObjectContext, managedObjectContext)
+        MinutesLeftView().environment(\.managedObjectContext, managedObjectContext)
+    }
+}
+
+struct TimeConfigurationView: View {
+    var managedObjectContext = (WKExtension.shared().delegate as! ExtensionDelegate).persistentContainer.viewContext
+    
+    var body: some View {
+        TimeListView().environment(\.managedObjectContext, managedObjectContext)
     }
 }
 
@@ -29,12 +37,22 @@ extension Numeric {
         return Formatter.withoutSeparator.string(for: self) ?? ""
     }
 }
-
-struct TimeList: View {
+struct MinutesLeftView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Time.entity(), sortDescriptors: [NSSortDescriptor(key: "startTime", ascending: true)]) var timeList: FetchedResults<Time>
-    var confirmDelete = false
-    
+
+    var body: some View {
+        ScrollView {
+            Text("Minutes Left:")
+            Text("120")
+        }
+    }
+}
+
+struct TimeListView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Time.entity(), sortDescriptors: [NSSortDescriptor(key: "startTime", ascending: true)]) var timeList: FetchedResults<Time>
+
     var body: some View {
         ScrollView {
             ForEach(timeList, id: \.self) { time in

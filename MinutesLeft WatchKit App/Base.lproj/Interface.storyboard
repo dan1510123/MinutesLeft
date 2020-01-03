@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3mp-fW-waa">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pq7-2P-40F">
     <device id="watch38"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
-        <!--Hosting Controller-->
+        <!--Configuration Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <hostingController id="3mp-fW-waa" customClass="HostingController" customModule="MinutesLeft_WatchKit_App" customModuleProvider="target"/>
+                <hostingController id="3mp-fW-waa" customClass="ConfigurationController" customModule="MinutesLeft_WatchKit_Extension"/>
             </objects>
-            <point key="canvasLocation" x="40" y="31"/>
+            <point key="canvasLocation" x="-49" y="31"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="sWL-lX-cGU">
+            <objects>
+                <controller hidesWhenLoading="NO" id="Pq7-2P-40F" customClass="HostingController" customModule="MinutesLeft_WatchKit_Extension">
+                    <items>
+                        <label alignment="center" text="Minutes" textAlignment="center" id="3iJ-yz-c86"/>
+                    </items>
+                    <connections>
+                        <segue destination="3mp-fW-waa" kind="relationship" relationship="nextPage" id="zq4-CB-qFD"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="305" y="31"/>
         </scene>
     </scenes>
 </document>
