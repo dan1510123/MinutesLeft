@@ -21,6 +21,7 @@
                         <label alignment="center" text="Minutes" textAlignment="center" id="3iJ-yz-c86"/>
                     </items>
                     <connections>
+                        <outlet property="minutesLeftLabel" destination="3iJ-yz-c86" id="wdd-HA-Eet"/>
                         <segue destination="3mp-fW-waa" kind="relationship" relationship="nextPage" id="zq4-CB-qFD"/>
                     </connections>
                 </controller>

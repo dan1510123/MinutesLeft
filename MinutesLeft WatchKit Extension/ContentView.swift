@@ -8,14 +8,6 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var managedObjectContext = (WKExtension.shared().delegate as! ExtensionDelegate).persistentContainer.viewContext
-    
-    var body: some View {
-        MinutesLeftView().environment(\.managedObjectContext, managedObjectContext)
-    }
-}
-
 struct TimeConfigurationView: View {
     var managedObjectContext = (WKExtension.shared().delegate as! ExtensionDelegate).persistentContainer.viewContext
     
@@ -37,17 +29,6 @@ extension Numeric {
         return Formatter.withoutSeparator.string(for: self) ?? ""
     }
 }
-struct MinutesLeftView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: Time.entity(), sortDescriptors: [NSSortDescriptor(key: "startTime", ascending: true)]) var timeList: FetchedResults<Time>
-
-    var body: some View {
-        ScrollView {
-            Text("Minutes Left:")
-            Text("120")
-        }
-    }
-}
 
 struct TimeListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -56,13 +37,15 @@ struct TimeListView: View {
     var body: some View {
         ScrollView {
             ForEach(timeList, id: \.self) { time in
-                Text("\(time.name), \(time.startTime.formattedWithoutSeparator), \(time.daysOfWeek.formattedWithoutSeparator)")
+                NavigationLink(destination: EditTimeView(time: time)) {
+                    Text("\(time.name), \(time.startTime.formattedWithoutSeparator), \(time.daysOfWeek.formattedWithoutSeparator)")
+                }
             }
             Button(action: {
                 var time = Time(context: self.managedObjectContext)
-                time.name = "A longer name"
-                time.startTime = 1200
-                time.daysOfWeek = 1111111
+                time.name = "Event"
+                time.startTime = 2400
+                time.daysOfWeek = 0000000
                 do {
                     try self.managedObjectContext.save()
                 } catch {
@@ -82,13 +65,42 @@ struct TimeListView: View {
             .foregroundColor(Color.red)
         }
     }
+}
+
+struct EditTimeView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
     
+    @State var name: String = ""
+    var time: Time
     
+    var body: some View {
+        VStack {
+            TextField("Event Name", text: $name).onAppear {
+                self.name = self.time.name
+            }
+            Button(action: {
+                self.time.name = self.name
+                self.time.objectWillChange.send()
+                
+                do {
+                    try self.managedObjectContext.save()
+                } catch {
+                    print(error)
+                }
+                
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Save")
+            }
+            .foregroundColor(Color.green)
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TimeConfigurationView()
     }
 }
 
