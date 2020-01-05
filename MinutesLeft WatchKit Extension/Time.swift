@@ -11,5 +11,5 @@ import CoreData
 class Time: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var startTime: Int16
-    @NSManaged var daysOfWeek: Int32
+    @NSManaged var daysOfWeek: String
 }

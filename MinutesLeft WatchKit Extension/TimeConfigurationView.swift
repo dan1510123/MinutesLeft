@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TimeConfigurationView.swift
 //  MinutesLeft WatchKit Extension
 //
 //  Created by Daniel Luo on 1/3/20.
@@ -38,14 +38,14 @@ struct TimeListView: View {
         ScrollView {
             ForEach(timeList, id: \.self) { time in
                 NavigationLink(destination: EditTimeView(time: time)) {
-                    Text("\(time.name), \(time.startTime.formattedWithoutSeparator), \(time.daysOfWeek.formattedWithoutSeparator)")
+                    Text("\(time.name), \(time.startTime.formattedWithoutSeparator), \(time.daysOfWeek)")
                 }
             }
             Button(action: {
-                var time = Time(context: self.managedObjectContext)
+                let time = Time(context: self.managedObjectContext)
                 time.name = "Event"
                 time.startTime = 2400
-                time.daysOfWeek = 0000000
+                time.daysOfWeek = "0000000"
                 do {
                     try self.managedObjectContext.save()
                 } catch {
@@ -67,41 +67,12 @@ struct TimeListView: View {
     }
 }
 
-struct EditTimeView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
-    
-    @State var name: String = ""
-    var time: Time
-    
-    var body: some View {
-        VStack {
-            TextField("Event Name", text: $name).onAppear {
-                self.name = self.time.name
-            }
-            Button(action: {
-                self.time.name = self.name
-                self.time.objectWillChange.send()
-                
-                do {
-                    try self.managedObjectContext.save()
-                } catch {
-                    print(error)
-                }
-                
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Save")
-            }
-            .foregroundColor(Color.green)
-        }
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         TimeConfigurationView()
     }
 }
 
-
+enum MyError: Error {
+    case runtimeError(String)
+}

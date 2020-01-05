@@ -12,10 +12,13 @@ import SwiftUI
 
 class HostingController: WKInterfaceController {
     @IBOutlet var minutesLeftLabel: WKInterfaceLabel!
-    
+    @IBOutlet var eventLabel: WKInterfaceLabel!
+
+    var helper: MinutesLeftHelper = MinutesLeftHelper()
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        self.refreshPerMinute()
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { timer in
             self.refreshPerMinute()
         })
@@ -30,15 +33,15 @@ class HostingController: WKInterfaceController {
 //
 //            minutesLeftLabel.setText("\(sec)")
             
+            let info = helper.getInfo()
             
+            minutesLeftLabel.setText(info[0])
+            eventLabel.setText(info[1])
         }
     }
     
     func getCalendarSecond() -> Int16 {
-        let date = Date()
-        let calendar = Calendar.current
-
-        return Int16(calendar.component(.second, from: date))
+        return Int16(Calendar.current.component(.second, from: Date()))
     }
 }
 
@@ -46,7 +49,10 @@ class MinutesLeftHelper {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Time.entity(), sortDescriptors: [NSSortDescriptor(key: "startTime", ascending: true)]) var timeList: FetchedResults<Time>
     
-    func x() {
-        let x = 0
+    func getInfo() -> [String] {
+        for time in self.timeList {
+            print(time.name)
+        }
+        return ["1000", "Epic Event!"]
     }
 }

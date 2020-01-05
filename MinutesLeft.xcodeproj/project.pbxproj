@@ -11,7 +11,7 @@
 		09D0110323BF3CA600AA9BB9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D0110123BF3CA600AA9BB9 /* Interface.storyboard */; };
 		09D0110523BF3CA800AA9BB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0110423BF3CA800AA9BB9 /* Assets.xcassets */; };
 		09D0110C23BF3CA800AA9BB9 /* MinutesLeft WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 09D0110B23BF3CA800AA9BB9 /* MinutesLeft WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		09D0111123BF3CA800AA9BB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0111023BF3CA800AA9BB9 /* ContentView.swift */; };
+		09D0111123BF3CA800AA9BB9 /* TimeConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0111023BF3CA800AA9BB9 /* TimeConfigurationView.swift */; };
 		09D0111323BF3CA800AA9BB9 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0111223BF3CA800AA9BB9 /* HostingController.swift */; };
 		09D0111523BF3CA800AA9BB9 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0111423BF3CA800AA9BB9 /* ExtensionDelegate.swift */; };
 		09D0111723BF3CAB00AA9BB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */; };
@@ -19,6 +19,7 @@
 		09D0112E23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */; };
 		09D0113023BF3FCA00AA9BB9 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0112F23BF3FCA00AA9BB9 /* Time.swift */; };
 		09D0113223BF561F00AA9BB9 /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0113123BF561F00AA9BB9 /* ConfigurationController.swift */; };
+		09E8C95423C1DA390096AACD /* EditTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8C95323C1DA390096AACD /* EditTimeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +71,7 @@
 		09D0110423BF3CA800AA9BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D0110623BF3CA800AA9BB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D0110B23BF3CA800AA9BB9 /* MinutesLeft WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MinutesLeft WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		09D0111023BF3CA800AA9BB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		09D0111023BF3CA800AA9BB9 /* TimeConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConfigurationView.swift; sourceTree = "<group>"; };
 		09D0111223BF3CA800AA9BB9 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		09D0111423BF3CA800AA9BB9 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		09D0112D23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImportantTimesData.xcdatamodel; sourceTree = "<group>"; };
 		09D0112F23BF3FCA00AA9BB9 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		09D0113123BF561F00AA9BB9 /* ConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationController.swift; sourceTree = "<group>"; };
+		09E8C95323C1DA390096AACD /* EditTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,15 +126,16 @@
 		09D0110F23BF3CA800AA9BB9 /* MinutesLeft WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				09D0111023BF3CA800AA9BB9 /* ContentView.swift */,
 				09D0111223BF3CA800AA9BB9 /* HostingController.swift */,
 				09D0113123BF561F00AA9BB9 /* ConfigurationController.swift */,
+				09D0111023BF3CA800AA9BB9 /* TimeConfigurationView.swift */,
+				09E8C95323C1DA390096AACD /* EditTimeView.swift */,
+				09D0112F23BF3FCA00AA9BB9 /* Time.swift */,
 				09D0111423BF3CA800AA9BB9 /* ExtensionDelegate.swift */,
 				09D0112C23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld */,
 				09D0111623BF3CAB00AA9BB9 /* Assets.xcassets */,
 				09D0111B23BF3CAB00AA9BB9 /* Info.plist */,
 				09D0111823BF3CAB00AA9BB9 /* Preview Content */,
-				09D0112F23BF3FCA00AA9BB9 /* Time.swift */,
 			);
 			path = "MinutesLeft WatchKit Extension";
 			sourceTree = "<group>";
@@ -277,7 +280,8 @@
 				09D0111323BF3CA800AA9BB9 /* HostingController.swift in Sources */,
 				09D0112E23BF3F3800AA9BB9 /* ImportantTimesData.xcdatamodeld in Sources */,
 				09D0113023BF3FCA00AA9BB9 /* Time.swift in Sources */,
-				09D0111123BF3CA800AA9BB9 /* ContentView.swift in Sources */,
+				09D0111123BF3CA800AA9BB9 /* TimeConfigurationView.swift in Sources */,
+				09E8C95423C1DA390096AACD /* EditTimeView.swift in Sources */,
 				09D0111523BF3CA800AA9BB9 /* ExtensionDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
