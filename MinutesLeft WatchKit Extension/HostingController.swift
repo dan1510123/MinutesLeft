@@ -9,12 +9,14 @@
 import WatchKit
 import Foundation
 import SwiftUI
+import CoreData
 
 class HostingController: WKInterfaceController {
     @IBOutlet var minutesLeftLabel: WKInterfaceLabel!
     @IBOutlet var eventLabel: WKInterfaceLabel!
-
+    
     var helper: MinutesLeftHelper = MinutesLeftHelper()
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -25,19 +27,10 @@ class HostingController: WKInterfaceController {
     }
     
     func refreshPerMinute() {
-        if(getCalendarSecond() <= 1) {
-//            let date = Date()
-//            let calendar = Calendar.current
-//
-//            let sec = calendar.component(.second, from: date)
-//
-//            minutesLeftLabel.setText("\(sec)")
-            
             let info = helper.getInfo()
             
             minutesLeftLabel.setText(info[0])
-            eventLabel.setText(info[1])
-        }
+            eventLabel.setText("until \(info[1])")
     }
     
     func getCalendarSecond() -> Int16 {
@@ -46,13 +39,80 @@ class HostingController: WKInterfaceController {
 }
 
 class MinutesLeftHelper {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: Time.entity(), sortDescriptors: [NSSortDescriptor(key: "startTime", ascending: true)]) var timeList: FetchedResults<Time>
+    let calendar = Calendar.current
+    let managedObjectContext = (WKExtension.shared().delegate as! ExtensionDelegate).persistentContainer.viewContext
+    func getInfo1() -> [String] {
+        print(getMinuteFormattedTime())
+        return ["1","none"]
+    }
     
     func getInfo() -> [String] {
-        for time in self.timeList {
-            print(time.name)
+        do {
+            // Make request and fetch the list of [Time]
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
+                   fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
+            let timeList = try self.managedObjectContext.fetch(fetchRequest) as! [Time]
+            
+            // Get weekday
+            let weekday = getWeekday()
+            
+            // Get current time
+            let minuteTime = getMinuteFormattedTime()
+            
+            return processTimes(timeList: timeList, weekday: weekday, minuteTime: minuteTime)
+        } catch {
+            print(error)
         }
-        return ["1000", "Epic Event!"]
+        return ["---", "tomorrow"]
+    }
+    
+    func processTimes(timeList: [Time], weekday: Int, minuteTime: Int) -> [String] {
+        var validTimes: [Time] = []
+        timeList.forEach( { time in
+            if(Array(time.daysOfWeek)[weekday - 1] == "1") {
+                validTimes.append(time)
+            }
+        })
+        
+        var i = 0
+        while(i < validTimes.count) {
+            if(validTimes[i].startTime > minuteTime) {
+                break;
+            }
+            i = i + 1
+        }
+        
+        if(i != validTimes.count) {
+            let min = Int(validTimes[i].startTime) - minuteTime
+            return ["\(min)", "\(validTimes[i].name)"]
+        }
+        else {
+            return ["---", "tomorrow"]
+        }
+    }
+    
+    /**
+     Returns the current weekday (1 for Sunday, 7 for Saturday)
+     */
+    func getWeekday() -> Int {
+        let currentDate = Date()
+        // Get current weekday
+        
+        let weekDay = self.calendar.component(.weekday, from: currentDate)
+        
+        return weekDay
+    }
+    
+    /**
+    Returns the time in minutes in military format
+    */
+    func getMinuteFormattedTime() -> Int {
+        let currentDate = Date()
+        // Get current weekday
+        
+        let hour = self.calendar.component(.hour, from: currentDate)
+        let min = self.calendar.component(.minute, from: currentDate)
+        
+        return hour * 100 + min
     }
 }

@@ -72,7 +72,3 @@ struct ContentView_Previews: PreviewProvider {
         TimeConfigurationView()
     }
 }
-
-enum MyError: Error {
-    case runtimeError(String)
-}

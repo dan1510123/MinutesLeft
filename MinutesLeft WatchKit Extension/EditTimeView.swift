@@ -31,7 +31,7 @@ struct EditTimeView: View {
                     if(!self.name.isEmpty) {
                         // Validate event name
                         if(self.name.count > 10) {
-                            throw MyError.runtimeError("Event name too long")
+                            throw MyError.NameTooLong
                         }
                         self.time.name = self.name
                     }
@@ -39,8 +39,8 @@ struct EditTimeView: View {
                     if(!self.startTime.isEmpty) {
                         // Validate start time
                         let start: Int16 = Int16(self.startTime)!
-                        if(start < 0 || start > 2400) {
-                            throw MyError.runtimeError("Time out of bounds")
+                        if(start < 1 || start > 2400) {
+                            throw MyError.TimeOutOfBounds
                         }
                         self.time.startTime = start
                     }
@@ -48,11 +48,11 @@ struct EditTimeView: View {
                     if(!self.weekdays.isEmpty) {
                         //Validate daysOfWeek
                         if(self.weekdays.count != 7) {
-                            throw MyError.runtimeError("Time out of bounds")
+                            throw MyError.InvalidWeekdayInputLength
                         }
                         for num in self.weekdays {
                             if(num != "0" && num != "1") {
-                                throw MyError.runtimeError("Time out of bounds")
+                                throw MyError.InvalidWeekdayFormat
                             }
                         }
                         self.time.daysOfWeek = self.weekdays
@@ -75,4 +75,11 @@ struct EditTimeView: View {
             .foregroundColor(Color.green)
         }
     }
+}
+
+enum MyError: Error {
+    case NameTooLong
+    case TimeOutOfBounds
+    case InvalidWeekdayInputLength
+    case InvalidWeekdayFormat
 }
