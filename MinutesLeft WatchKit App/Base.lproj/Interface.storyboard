@@ -36,16 +36,5 @@
             </objects>
             <point key="canvasLocation" x="305" y="31"/>
         </scene>
-        <!--Interface Controller-->
-        <scene sceneID="RWB-rj-pyc">
-            <objects>
-                <controller id="v32-IV-hX7">
-                    <items>
-                        <switch width="1" alignment="left" value="YES" title="Switch" id="q5H-Ta-gGQ"/>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="308" y="-303"/>
-        </scene>
     </scenes>
 </document>

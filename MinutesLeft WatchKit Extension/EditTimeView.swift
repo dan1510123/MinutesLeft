@@ -21,14 +21,42 @@ struct EditTimeView: View {
     @State var thu = false
     @State var fri = false
     @State var sat = false
+    @State var selectedHour: Int = 0
+    @State var selectedMinute: Int = 0
     var time: Time
     
     var body: some View {
         ScrollView {
-            Text("Event details")
+            Text("Event details").font(.headline)
+            TextField("Name: \(time.name)", text: $name)
+            Text("Time").font(.subheadline).padding(0)
+            HStack {
+                Picker(selection: $selectedHour, label: Text("Hour")) {
+                    ForEach(0 ..< 25) { index in
+                        if(index < 10) {
+                            Text("0\(index)").tag(index)
+                        }
+                        else {
+                            Text("\(index)").tag(index)
+                        }
+                    }
+                }.onAppear(perform: {
+                    self.selectedHour = Int(self.time.startTime / 100)
+                }).frame(width: 50, height: 70, alignment: .center)
+                Picker(selection: $selectedMinute, label: Text("Minute")) {
+                    ForEach(0 ..< 60) { index in
+                        if(index < 10) {
+                            Text("0\(index)").tag(index)
+                        }
+                        else {
+                            Text("\(index)").tag(index)
+                        }
+                    }
+                }.onAppear(perform: {
+                    self.selectedMinute = Int(self.time.startTime % 100)
+                }).frame(width: 50, height: 70, alignment: .center)
+            }
             ScrollView {
-                TextField("Name: \(time.name)", text: $name)
-                TextField("Start time: \(time.startTime)", text: $startTime)
                 Toggle(isOn: $sun) {
                     Text("Sunday")
                 }.onAppear(perform: {
@@ -66,6 +94,7 @@ struct EditTimeView: View {
                 }).padding()
                 Button(action: {
                     do {
+                        // Update the event name
                         if(!self.name.isEmpty) {
                             // Validate event name
                             if(self.name.count > 10) {
@@ -74,15 +103,12 @@ struct EditTimeView: View {
                             self.time.name = self.name
                         }
                         
-                        if(!self.startTime.isEmpty) {
-                            // Validate start time
-                            let start: Int16 = Int16(self.startTime)!
-                            if(start < 1 || start > 2400) {
-                                throw MyError.TimeOutOfBounds
-                            }
-                            self.time.startTime = start
-                        }
+                        // Update the start time
+                        self.time.startTime = Int16(self.selectedHour * 100 + self.selectedMinute)
+                        print(self.time.startTime)
+                        print(self.selectedHour)
                         
+                        // Update the daysOfWeek
                         var newWeekdays: String = ""
                         newWeekdays.append(self.sun ? "1" : "0")
                         newWeekdays.append(self.mon ? "1" : "0")
