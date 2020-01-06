@@ -13,10 +13,10 @@
             </objects>
             <point key="canvasLocation" x="-49" y="31"/>
         </scene>
-        <!--Hosting Controller-->
+        <!--Minutes Left Controller-->
         <scene sceneID="sWL-lX-cGU">
             <objects>
-                <controller hidesWhenLoading="NO" id="Pq7-2P-40F" customClass="HostingController" customModule="MinutesLeft_WatchKit_Extension">
+                <controller hidesWhenLoading="NO" id="Pq7-2P-40F" customClass="MinutesLeftController" customModule="MinutesLeft_WatchKit_Extension">
                     <items>
                         <label width="136" alignment="center" text="Minutes Left" textAlignment="center" id="3iJ-yz-c86">
                             <fontDescription key="font" type="boldSystem" pointSize="20"/>

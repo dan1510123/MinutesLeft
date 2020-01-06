@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
-class HostingController: WKInterfaceController {
+class MinutesLeftController: WKInterfaceController {
     @IBOutlet var minutesLeftLabel: WKInterfaceLabel!
     @IBOutlet var eventLabel: WKInterfaceLabel!
     
@@ -83,7 +83,10 @@ class MinutesLeftHelper {
         }
         
         if(i != validTimes.count) {
-            let min = Int(validTimes[i].startTime) - minuteTime
+            let hourDiff = Int(validTimes[i].startTime / 100) - Int(minuteTime / 100)
+            let minDiff = Int(validTimes[i].startTime % 100) - (minuteTime % 100)
+            let min = hourDiff * 60 + minDiff
+            
             return ["\(min)", "\(validTimes[i].name)"]
         }
         else {
