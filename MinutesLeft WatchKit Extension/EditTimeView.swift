@@ -135,6 +135,15 @@ struct EditTimeView: View {
                     Text("Save")
                 }
                 .foregroundColor(Color.green)
+//                Crashes when I run it on Apple Watch device:
+//                Button(action: {
+//                        self.managedObjectContext.delete(self.time)
+//                    self.presentationMode.wrappedValue.dismiss()
+//                }) {
+//                       Text("Delete")
+//                }
+//                .foregroundColor(Color.red)
+
             }
         }
     }

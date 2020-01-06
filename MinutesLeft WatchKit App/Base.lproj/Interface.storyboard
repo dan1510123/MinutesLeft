@@ -19,22 +19,26 @@
                 <controller hidesWhenLoading="NO" id="Pq7-2P-40F" customClass="MinutesLeftController" customModule="MinutesLeft_WatchKit_Extension">
                     <items>
                         <label width="136" alignment="center" text="Minutes Left" textAlignment="center" id="3iJ-yz-c86">
-                            <fontDescription key="font" type="boldSystem" pointSize="20"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="16"/>
                         </label>
                         <separator alignment="left" id="a0Z-KK-JWB"/>
-                        <label alignment="center" text="120" id="Nnh-zt-9q4">
+                        <label height="70" alignment="center" text="120" id="Nnh-zt-9q4">
                             <fontDescription key="font" type="system" pointSize="72"/>
                         </label>
-                        <label alignment="center" text="Until &quot;My Event&quot;" id="F6I-Nw-eMi"/>
+                        <label height="30" alignment="center" text="Until &quot;My Event&quot;" id="F6I-Nw-eMi"/>
+                        <button width="1" height="32" alignment="left" title="Settings" id="60O-oO-1gU">
+                            <connections>
+                                <segue destination="3mp-fW-waa" kind="push" id="b5q-KK-FP1"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="eventLabel" destination="F6I-Nw-eMi" id="kop-eG-iuh"/>
                         <outlet property="minutesLeftLabel" destination="Nnh-zt-9q4" id="cuQ-V9-PFH"/>
-                        <segue destination="3mp-fW-waa" kind="relationship" relationship="nextPage" id="zq4-CB-qFD"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="305" y="31"/>
+            <point key="canvasLocation" x="305" y="21"/>
         </scene>
     </scenes>
 </document>
